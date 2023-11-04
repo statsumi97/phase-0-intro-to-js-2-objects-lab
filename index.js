@@ -1,30 +1,49 @@
-//1st test
-const employee = {name: 'Sam'}
-const streetAddress = '11 Broadway'
-function updateEmployeeWithKeyAndValue(employee, key, value) {
-    const mondayEmployee = {...employee}
-    mondayEmployee[key] = value 
-    return mondayEmployee
+const employee = {
+    name: 'Sam',
+    streetAddress: '11 Broadway',
 }
-//3rd test
-function destructivelyUpdateEmployeeWithKeyAndValue(employee, key, value) {
-    employee[key] = value
-    return employee
-    const mondayAddress = destructivelyUpdateEmployeeWithKeyAndValue(employee, streetAddress)
-    mondayAddress.streetAddress = '12 Broadway'
-    return mondayAddress
+function updateEmployeeWithKeyAndValue(obj, key, value) {
+    const newObj = {...obj};
+    newObj[key] = value;
+    return newObj;
 }
-//4th test
-function deleteFromEmployeeByKey(employee, key) {
-    const newEmployee = {...employee}
-    delete newEmployee[key]
-    return newEmployee
+
+//
+function destructivelyUpdateEmployeeWithKeyAndValue(obj, key, value) {
+    obj[key] = value;
+    return obj;
 }
-//6th test
-function destructivelyDeleteFromEmployeeByKey(employee, key, value) {
-    employee[key] = value
-    return employee
-    const tuesdayEmployee = destructivelyDeleteFromEmployeeByKey(employee, key)
-    delete tuesdayEmployee[key]
-    return tuesdayEmployee
+employee.streetAddress = '12 Broadway';
+
+//
+function deleteFromEmployeeByKey(obj, key) {
+    const newEmployee = {...obj};
+    delete newEmployee[key];
+    return newEmployee;
 }
+console.log(deleteFromEmployeeByKey(employee.name, employee.streetAddress));
+
+//
+function destructivelyDeleteFromEmployeeByKey(obj, key) {
+    delete obj[key];
+    return obj;
+}
+console.log(destructivelyDeleteFromEmployeeByKey(employee.name, employee.streetAddress));
+
+/*
+describe('destructivelyDeleteFromEmployeeByKey(employee, key)', function () {
+    it('returns employee without the deleted key/value pair', function () {
+      let newEmployee = destructivelyDeleteFromEmployeeByKey(employee, 'name');
+
+      expect(newEmployee['name']).to.equal(undefined);
+    });
+
+    it('modifies the original employee', function () {
+      let newEmployee = destructivelyDeleteFromEmployeeByKey(employee, 'name');
+
+      expect(employee['name']).to.equal(undefined);
+      expect(employee).to.equal(newEmployee);
+    });
+  });
+});
+  */
